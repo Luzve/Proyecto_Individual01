@@ -1,9 +1,9 @@
 FROM python:3.10.5
 
-COPY . /app/app
-WORKDIR /app/app
+COPY . usr/src/app
+WORKDIR /usr/src/app
 
 RUN pip install -r requirements.txt
-EXPOSE 8000
-CMD [ 'unicorn', 'main:data_src_app', '--host', '0.0.0.0']
+
+ENTRYPOINT uvicorn --host 0.0.0.0 main:app --reload
 
